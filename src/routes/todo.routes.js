@@ -5,4 +5,7 @@ router.post("/add", todoController.addtodo)
 
 router.get("/get", todoController.gettodo)
 
+router.delete("/delete/:id", todoController.deletetodo)
+
+
 module.exports = router

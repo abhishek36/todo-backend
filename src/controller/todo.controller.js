@@ -32,22 +32,17 @@ exports.gettodo = async function(req, res, next) {
     }
 }
 
-
-// exports.constructFormulaOfDB = (req, res)=>{
-//     let formula = req.body
-//     let SchemaName =formula.leftType
-//     let condition =`${SchemaName}.find({${formula.leftValue}: '${formula.rightValue}'})`
-
-//     res.status(200).json({
-//         message : "todo fetched successfully",
-//         statusbar : "success",
-//         data : condition
-//     })
-//   }
-
-
-//   function constructFormulaOfDB(formula){
-//     let SchemaName =formula.leftType
-//     let condition =`${SchemaName}.find({${formula.leftValue}: '${formula.rightValue}'})`
-//         return condition
-// }
+exports.deletetodo = async function(req, res, next) {
+    try {
+        const tododata =await todo.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            message : "todo deleted successfully",
+            statusbar : "success",
+        })
+    } catch (error) {
+        res.status(401).json({
+            message : "Error creating",
+            statusbar : "Failed to fetched todo"
+        })
+    }
+}
