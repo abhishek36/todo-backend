@@ -3,7 +3,7 @@ const todoSchema = new mongoose.Schema({
     name : {
         type : String,
     },
-    completed : {
+    isCompleted : {
         type : Boolean,
         default : true
     }

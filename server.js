@@ -36,7 +36,7 @@ app.get("/", (req, res)=>{
 const todoRoutes = require('./src/routes/todo.routes')
 app.use("/todo",todoRoutes)
 
-const port = 8080;
+const port = 3001;
 app.listen(port, ()=>{
     console.log(`App running on http://localhost:${port}`);
 });

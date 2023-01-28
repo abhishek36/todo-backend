@@ -46,3 +46,28 @@ exports.deletetodo = async function(req, res, next) {
         })
     }
 }
+
+exports.updateCompleted = async function(req, res, next) {
+    try {
+        const getTodo = await todo.findById(req.params.id)
+        console.log("🚀 ~ file: todo.controller.js:53 ~ exports.updateCompleted ~ getTodo", getTodo)
+        if(getTodo.isCompleted === true){
+            payload = {isCompleted : false}
+        }else{
+            payload = {isCompleted : true}
+        }
+        console.log(payload)
+        await todo.findByIdAndUpdate(req.params.id,payload)
+        const getUpdatedTodo = await todo.findById(req.params.id)
+        res.status(200).json({
+            message : "todo status updated successfully",
+            statusbar : "success",
+            isCompleted : getUpdatedTodo.isCompleted
+        })
+    } catch (error) {
+        res.status(401).json({
+            message : "Error creating",
+            statusbar : "Failed to fetched todo"
+        })
+    }
+}
