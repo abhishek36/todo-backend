@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-
 app.use(express.json())
+
+//local db connection
 mongoose.connect("mongodb://localhost:27017/temp")
 .then(()=>{
     console.log("Connected to MongoDB")
@@ -12,6 +13,8 @@ mongoose.connect("mongodb://localhost:27017/temp")
     console.log("Error connecting to MongoDB")
 });
 
+
+//enabling CORS
 enableCORS(app);
 app.use(cors());
 function enableCORS(expressInstance) {
@@ -29,10 +32,12 @@ function enableCORS(expressInstance) {
     });
 }
 
+//temp API to check we are able to get the response or not
 app.get("/", (req, res)=>{
     res.send("Hello World")
 })
 
+//importing the model here so we can access the API from here.  Cycle would be like model-controller-router-server.js
 const todoRoutes = require('./src/routes/todo.routes')
 app.use("/todo",todoRoutes)
 
