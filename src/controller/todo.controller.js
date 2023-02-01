@@ -6,12 +6,12 @@ exports.addtodo = async function(req, res, next) {
         await tododata.save()
         res.status(200).json({
             message : "todo added successfully",
-            statusbar : "success"
+            status : "success"
         })
     } catch (error) {
         res.status(401).json({
             message : "Error creating",
-            statusbar : "Failed to create todo"
+            status : "Failed to create todo"
         })
     }
 }
@@ -21,13 +21,13 @@ exports.gettodo = async function(req, res, next) {
         const tododata =await todo.find()
         res.status(200).json({
             message : "todo fetched successfully",
-            statusbar : "success",
+            status : "success",
             data : tododata
         })
     } catch (error) {
         res.status(401).json({
             message : "Error creating",
-            statusbar : "Failed to fetched todo"
+            status : "Failed to fetched todo"
         })
     }
 }
@@ -37,12 +37,12 @@ exports.deletetodo = async function(req, res, next) {
         const tododata =await todo.findByIdAndDelete(req.params.id)
         res.status(200).json({
             message : "todo deleted successfully",
-            statusbar : "success",
+            status : "success",
         })
     } catch (error) {
         res.status(401).json({
             message : "Error creating",
-            statusbar : "Failed to fetched todo"
+            status : "Failed to fetched todo"
         })
     }
 }
@@ -60,13 +60,13 @@ exports.updateCompleted = async function(req, res, next) {
         const getUpdatedTodo = await todo.findById(req.params.id)
         res.status(200).json({
             message : "todo status updated successfully",
-            statusbar : "success",
+            status : "success",
             isCompleted : getUpdatedTodo.isCompleted
         })
     } catch (error) {
         res.status(401).json({
             message : "Error creating",
-            statusbar : "Failed to fetched todo"
+            status : "Failed to fetched todo"
         })
     }
 }
