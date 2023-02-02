@@ -1,13 +1,13 @@
 const todoController = require("../controller/todo.controller")
 const router = require("express").Router()
+const auth = require("../../helper/auth")
+router.post("/add",auth, todoController.addtodo)
 
-router.post("/add", todoController.addtodo)
+router.get("/get",auth, todoController.gettodo)
 
-router.get("/get", todoController.gettodo)
+router.put("/update/:id",auth, todoController.updateCompleted)
 
-router.put("/update/:id", todoController.updateCompleted)
-
-router.delete("/delete/:id", todoController.deletetodo)
+router.delete("/delete/:id",auth, todoController.deletetodo)
 
 
 module.exports = router
