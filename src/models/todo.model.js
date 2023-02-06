@@ -10,6 +10,10 @@ const todoSchema = new mongoose.Schema({
     userId :{
         type : mongoose.Types.ObjectId,
         ref : "User"
+    },
+    categoryId :{
+        type : mongoose.Types.ObjectId,
+        ref : "Category"
     }
 });
 

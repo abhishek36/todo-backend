@@ -2,6 +2,7 @@ const todo = require("../models/todo.model");
 
 exports.addtodo = async function(req, res, next) {
     try {
+        req.body["userId"] = req.userId
         const tododata = new todo(req.body)
         await tododata.save()
         res.status(200).json({
@@ -18,7 +19,23 @@ exports.addtodo = async function(req, res, next) {
 
 exports.gettodo = async function(req, res, next) {
     try {
-        const tododata =await todo.find()
+        const tododata =await todo.find({userId : req.userId})
+        res.status(200).json({
+            message : "todo fetched successfully",
+            status : "success",
+            data : tododata
+        })
+    } catch (error) {
+        res.status(401).json({
+            message : "Error creating",
+            status : "Failed to fetched todo"
+        })
+    }
+}
+
+exports.getTodoByCategoryId = async function(req, res, next) {
+    try {
+        const tododata =await todo.find({categoryId : req.params.categoryId})
         res.status(200).json({
             message : "todo fetched successfully",
             status : "success",
@@ -41,8 +58,8 @@ exports.deletetodo = async function(req, res, next) {
         })
     } catch (error) {
         res.status(401).json({
-            message : "Error creating",
-            status : "Failed to fetched todo"
+            message : "Error Deleteing",
+            status : "Failed"
         })
     }
 }

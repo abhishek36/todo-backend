@@ -12,8 +12,6 @@ module.exports = (req, res, next) => {
         auth: false,
         message: err,
       });
-    //req.username = decoded.username;
-    // console.log(decoded);
     req.userId = decoded.userId;
     req.token = token;
     next();

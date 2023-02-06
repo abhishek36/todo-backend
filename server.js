@@ -40,8 +40,10 @@ app.get("/", (req, res)=>{
 //importing the model here so we can access the API from here.  Cycle would be like model-controller-router-server.js
 const userRoutes = require('./src/routes/user.routes')
 const todoRoutes = require('./src/routes/todo.routes')
+const categoryRoutes = require('./src/routes/category.routes')
 app.use("/",userRoutes)
 app.use("/todo",todoRoutes)
+app.use("/category",categoryRoutes)
 
 const port = 3001;
 app.listen(port, ()=>{
