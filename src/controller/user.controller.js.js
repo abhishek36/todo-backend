@@ -43,6 +43,7 @@ exports.login = async function(req, res, next) {
                 {
                   userId: getUser._id,
                   email : getUser.email,
+                  role : getUser.role,
                   date: new Date(),
                 },
                 "ptsprint"

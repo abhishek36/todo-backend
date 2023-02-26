@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
       });
     req.userId = decoded.userId;
     req.token = token;
+    req.role = decoded.role;
     next();
   });
 };

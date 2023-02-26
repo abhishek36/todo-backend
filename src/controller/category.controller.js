@@ -19,7 +19,12 @@ exports.addCategory = async function(req, res, next) {
 
 exports.getCategory = async function(req, res, next) {
     try {
-        const categorydata =await Category.find({userId : req.userId})
+        let categorydata = []
+        if(req.role === "ADMIN"){
+            categorydata =await Category.find()
+        }else{
+            categorydata =await Category.find({userId : req.userId})
+        }
         res.status(200).json({
             message : "Category fetched successfully",
             status : "success",
