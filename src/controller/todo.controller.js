@@ -19,7 +19,13 @@ exports.addtodo = async function(req, res, next) {
 
 exports.gettodo = async function(req, res, next) {
     try {
-        const tododata =await todo.find({userId : req.userId})
+        console.log(req.role)
+        let tododata;
+        if(req.role === "ADMIN"){
+            tododata = await todo.find()
+        }else{
+            tododata = await todo.find({userId : req.userId})
+        }
         res.status(200).json({
             message : "todo fetched successfully",
             status : "success",
